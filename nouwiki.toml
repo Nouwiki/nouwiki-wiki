@@ -1,0 +1,46 @@
+wiki = "nouwiki-wiki"
+template = "nouwiki-default-template"
+
+index_default = "dynamic" # dynamic, static
+
+[global]
+import = []
+css = []
+js = []
+
+[parser_options]
+html = true
+linkify = false
+typographer = false
+
+[CORS]
+enabled = true
+
+[[plugins.parser]]
+	name = "markdown-it-nouwiki-wikilink.min.js"
+		[plugins.parser.options.static_index]
+		head = "wiki/"
+		tail = ".html"
+		[plugins.parser.options.static]
+		head = ""
+		tail = ".html"
+
+		[plugins.parser.options.dynamic]
+		head = "?title="
+		tail = ""
+
+		[plugins.parser.options.nouwiki]
+		head = "/wiki/"
+		tail = ""
+[[plugins.parser]]
+	name = "markdown-it-nouwiki-locallink.min.js"
+		[plugins.parser.options.static_index]
+		head = "."
+		tail = ""
+		[plugins.parser.options.static]
+		head = "../.."
+		tail = ""
+
+		[plugins.parser.options.dynamic]
+		head = "."
+		tail = ""
